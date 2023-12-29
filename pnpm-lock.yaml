@@ -114,7 +114,11 @@ importers:
         specifier: ^1.8.8
         version: 1.8.27(typescript@5.2.2)
 
-  packages/vue: {}
+  packages/vue:
+    devDependencies:
+      vue:
+        specifier: ^3.4.0
+        version: 3.4.0(typescript@5.2.2)
 
 packages:
   /@aashutoshrathi/word-wrap@1.2.6:

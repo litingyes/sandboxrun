@@ -1,6 +1,7 @@
 {
   "name": "@sandboxrun/vue",
   "version": "0.0.0",
+  "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -9,5 +10,11 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
+  },
+  "scripts": {
+    "dev": "vite -c ./playground/vite.config.ts"
+  },
+  "devDependencies": {
+    "vue": "^3.4.0"
   }
 }
