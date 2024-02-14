@@ -3,6 +3,8 @@ import { ref, reactive } from 'vue';
 import SandboxPreview from './components/SandboxPreview.vue';
 import SandboxCodeEditor from './components/SandboxCodeEditor.vue';
 import type { LANGS } from './constant';
+import ArrowDown from './icons/ArrowDown.vue';
+import { useElementHover } from '@vueuse/core';
 
 interface Props {
   html?: string;
@@ -30,10 +32,15 @@ const onToggleActiveType = (lang: LANGS) => {
     codes[lang.toLocaleLowerCase() as Lowercase<LANGS>]
   );
 };
+
+const showCode = ref(false);
+
+const sandboxRunRef = ref<HTMLDivElement>();
+const isHover = useElementHover(sandboxRunRef);
 </script>
 
 <template>
-  <div class="sandbox-run">
+  <div ref="sandboxRunRef" class="sandbox-run">
     <div class="sandbox-run__preview">
       <SandboxPreview :html="codes.html" :js="codes.js" :css="codes.css" />
       <div class="sandbox-run__preview__footer">
@@ -49,8 +56,9 @@ const onToggleActiveType = (lang: LANGS) => {
         </ul>
       </div>
     </div>
-    <div>
+    <Transition name="fade">
       <SandboxCodeEditor
+        v-show="showCode"
         ref="editorRef"
         :lang="activeType"
         @loaded="onToggleActiveType(activeType)"
@@ -58,12 +66,21 @@ const onToggleActiveType = (lang: LANGS) => {
         @update:js="(js) => (codes.js = js)"
         @update:css="(css) => (codes.css = css)"
       />
-    </div>
+    </Transition>
+    <Transition name="fade">
+      <ArrowDown
+        v-show="isHover"
+        class="sandbox-run__arrow"
+        :class="{ reverse: showCode }"
+        @click="showCode = !showCode"
+      />
+    </Transition>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .sandbox-run {
+  position: relative;
   background: #ffffff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
   border-radius: 8px;
@@ -101,5 +118,32 @@ const onToggleActiveType = (lang: LANGS) => {
       }
     }
   }
+
+  &__arrow {
+    background: white;
+    position: absolute;
+    border: 1px rgba(0, 0, 0, 0.25) solid;
+    left: 50%;
+    bottom: -12px;
+    transform: translateX(-50%);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s;
+    color: #475569;
+
+    &.reverse {
+      transform: translateX(-50%) rotateX(180deg);
+    }
+  }
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s;
 }
 </style>
