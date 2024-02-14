@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import {
+  ref,
+  onMounted,
+  onBeforeUnmount,
+  defineProps,
+  defineEmits,
+} from 'vue3';
 import { EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
 import { html } from '@codemirror/lang-html';

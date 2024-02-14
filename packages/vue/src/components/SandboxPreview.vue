@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount, defineProps } from 'vue3';
 import { useDebounceFn } from '@vueuse/core';
 import sandboxDoc from '../sandbox.html?raw';
 import type { LANGS } from '../constant';
