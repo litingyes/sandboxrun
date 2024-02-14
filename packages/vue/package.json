@@ -15,6 +15,16 @@
     "dev": "vite -c ./playground/vite.config.ts"
   },
   "devDependencies": {
+    "@codemirror/lang-css": "^6.2.1",
+    "@codemirror/lang-html": "^6.4.7",
+    "@codemirror/lang-javascript": "^6.2.1",
+    "@codemirror/language": "^6.10.0",
+    "@codemirror/state": "^6.4.0",
+    "codemirror": "^6.0.1",
+    "sass": "^1.69.7",
     "vue": "^3.4.0"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.7.1"
   }
 }

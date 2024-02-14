@@ -1,4 +1,4 @@
 {
-  "cSpell.words": ["commitlint", "sandboxrun"],
+  "cSpell.words": ["codemirror", "commitlint", "sandboxrun", "vueuse"],
   "typescript.tsdk": "node_modules/typescript/lib"
 }
