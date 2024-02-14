@@ -13,6 +13,8 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
   html: '<h1>Sandbox Run</h1>',
+  js: '',
+  css: '',
 });
 
 const codes = reactive<Record<Lowercase<LANGS>, string>>({
@@ -42,7 +44,7 @@ const isHover = useElementHover(sandboxRunRef);
 <template>
   <div ref="sandboxRunRef" class="sandbox-run">
     <div class="sandbox-run__preview">
-      <SandboxPreview :html="codes.html" :js="codes.js" :css="codes.css" />
+      <SandboxPreview :codes="codes" />
     </div>
     <Transition name="fade">
       <div v-show="showCode">

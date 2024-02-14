@@ -2,17 +2,18 @@
 import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import sandboxDoc from '../sandbox.html?raw';
+import type { LANGS } from '../constant';
 
 interface Props {
-  html?: string;
-  js?: string;
-  css?: string;
+  codes: Record<Lowercase<LANGS>, string>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  html: '<h1>Sandbox Run</h1>',
-  js: '',
-  css: '',
+  codes: () => ({
+    html: '<h1>Sandbox Run</h1>',
+    js: '',
+    css: '',
+  }),
 });
 
 const sandboxPreviewRef = ref<HTMLDivElement>();
@@ -26,18 +27,24 @@ const updateSandbox = useDebounceFn(() => {
   sandbox.style.height = '100%';
   sandbox.style.border = 'none';
   sandbox.srcdoc = sandboxDoc
-    .replace(/\/\* PLACEHOLDER_CSS \*\//, props.css)
-    .replace(/<!-- PLACEHOLDER_JS -->/, props.js)
-    .replace(/<!-- PLACEHOLDER_HTML-->/, props.html);
+    .replace(/\/\* PLACEHOLDER_CSS \*\//, props.codes.css)
+    .replace(/<!-- PLACEHOLDER_JS -->/, props.codes.js)
+    .replace(/<!-- PLACEHOLDER_HTML-->/, props.codes.html);
   sandboxPreviewRef.value?.appendChild(sandbox);
 });
 
 onMounted(() => {
   updateSandbox();
 });
-watch([() => props.html, () => props.js, () => props.css], () => {
-  updateSandbox();
-});
+watch(
+  () => props.codes,
+  () => {
+    updateSandbox();
+  },
+  {
+    deep: true,
+  }
+);
 onBeforeUnmount(() => {
   sandbox?.remove();
 });
