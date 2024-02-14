@@ -65,11 +65,11 @@ const toggleLang = (lang: LANGS, code: string) => {
             const code = update.state.doc.toString();
 
             if (props.lang === 'HTML') {
-              emit('update:html', code);
+              emit('update:html', code.trim());
             } else if (props.lang === 'JS') {
-              emit('update:js', code);
+              emit('update:js', code.trim());
             } else if (props.lang === 'CSS') {
-              emit('update:css', code);
+              emit('update:css', code.trim());
             }
           }
         }),
