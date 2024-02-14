@@ -135,6 +135,9 @@ importers:
       '@codemirror/state':
         specifier: ^6.4.0
         version: 6.4.0
+      '@codemirror/theme-one-dark':
+        specifier: ^6.1.2
+        version: 6.1.2
       codemirror:
         specifier: ^6.0.1
         version: 6.0.1(@lezer/common@1.2.0)
@@ -1882,6 +1885,18 @@ packages:
       {
         integrity: sha512-hm8XshYj5Fo30Bb922QX9hXB/bxOAVH+qaqHBzw5TKa72vOeslyGwd4X8M0c1dJ9JqxlaMceOQ8RsL9tC7gU0A==,
       }
+    dev: true
+
+  /@codemirror/theme-one-dark@6.1.2:
+    resolution:
+      {
+        integrity: sha512-F+sH0X16j/qFLMAfbciKTxVOwkdAS336b7AXTKOZhy8BR3eH/RelsnLgLFINrpST63mmN2OuwUt0W2ndUgYwUA==,
+      }
+    dependencies:
+      '@codemirror/language': 6.10.0
+      '@codemirror/state': 6.4.0
+      '@codemirror/view': 6.23.0
+      '@lezer/highlight': 1.2.0
     dev: true
 
   /@codemirror/view@6.23.0:

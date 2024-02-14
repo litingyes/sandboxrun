@@ -43,7 +43,9 @@ const isHover = useElementHover(sandboxRunRef);
   <div ref="sandboxRunRef" class="sandbox-run">
     <div class="sandbox-run__preview">
       <SandboxPreview :html="codes.html" :js="codes.js" :css="codes.css" />
-      <div class="sandbox-run__preview__footer">
+    </div>
+    <Transition name="fade">
+      <div v-show="showCode">
         <ul class="sandbox-run__tabs">
           <li
             v-for="item in codeEditTypes"
@@ -54,18 +56,15 @@ const isHover = useElementHover(sandboxRunRef);
             {{ item }}
           </li>
         </ul>
+        <SandboxCodeEditor
+          ref="editorRef"
+          :lang="activeType"
+          @loaded="onToggleActiveType(activeType)"
+          @update:html="(html) => (codes.html = html)"
+          @update:js="(js) => (codes.js = js)"
+          @update:css="(css) => (codes.css = css)"
+        />
       </div>
-    </div>
-    <Transition name="fade">
-      <SandboxCodeEditor
-        v-show="showCode"
-        ref="editorRef"
-        :lang="activeType"
-        @loaded="onToggleActiveType(activeType)"
-        @update:html="(html) => (codes.html = html)"
-        @update:js="(js) => (codes.js = js)"
-        @update:css="(css) => (codes.css = css)"
-      />
     </Transition>
     <Transition name="fade">
       <ArrowDown
@@ -78,21 +77,13 @@ const isHover = useElementHover(sandboxRunRef);
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .sandbox-run {
   position: relative;
   background: #ffffff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   padding: 8px;
-
-  &__preview {
-    &__footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
 
   &__tabs {
     list-style: none;

@@ -5,6 +5,7 @@ import { EditorView, basicSetup } from 'codemirror';
 import { html } from '@codemirror/lang-html';
 import { javascript } from '@codemirror/lang-javascript';
 import { css } from '@codemirror/lang-css';
+import { oneDark } from '@codemirror/theme-one-dark';
 import type { LANGS } from '../constant';
 
 export interface Props {
@@ -37,7 +38,7 @@ const getLangConfig = (lang: LANGS) => {
 
 onMounted(() => {
   const state = EditorState.create({
-    extensions: [basicSetup],
+    extensions: [basicSetup, oneDark],
   });
 
   codemirror = new EditorView({
@@ -57,6 +58,7 @@ const toggleLang = (lang: LANGS, code: string) => {
       doc: code,
       extensions: [
         basicSetup,
+        oneDark,
         getLangConfig(lang),
         EditorView.updateListener.of((update) => {
           if (update.docChanged) {
@@ -84,3 +86,18 @@ defineExpose({
 <template>
   <div ref="container" class="sandbox-code-editor"></div>
 </template>
+
+<style lang="scss">
+.sandbox-code-editor {
+  border-radius: 8px;
+  overflow: hidden;
+
+  .cm-editor {
+    min-height: 100px;
+
+    &.cm-focused {
+      outline: none !important;
+    }
+  }
+}
+</style>
