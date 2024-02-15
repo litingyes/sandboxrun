@@ -1,14 +1,21 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../dist/out-tsc",
+    "lib": ["ES2016", "DOM", "DOM.Iterable"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
     "types": ["vite/client"],
-    "lib": ["ES2016", "DOM", "DOM.Iterable"]
+    "outDir": "../../dist/out-tsc"
   },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue"
+  ],
   "exclude": [
     "src/**/__tests__/*",
     "src/**/*.spec.ts",
@@ -19,12 +26,5 @@
     "src/**/*.test.js",
     "src/**/*.spec.jsx",
     "src/**/*.test.jsx"
-  ],
-  "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
   ]
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import type { PropType } from 'vue';
 import { EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
@@ -16,20 +16,16 @@ const sandboxCodeEditorProps = {
 };
 const sandboxCodeEditorEmits = {
   loaded: () => {},
-  'update:html': (content: string) => {},
-  'update:js': (content: string) => {},
-  'update:css': (content: string) => {},
+  'update:html': (_content: string) => {},
+  'update:js': (_content: string) => {},
+  'update:css': (_content: string) => {},
 };
 
-const getLangConfig = (lang: LANGS) => {
-  if (lang === 'HTML') {
-    return html();
-  } else if (lang === 'JS') {
-    return javascript();
-  } else {
-    return css();
-  }
-};
+function getLangConfig(lang: LANGS) {
+  if (lang === 'HTML') return html();
+  else if (lang === 'JS') return javascript();
+  else return css();
+}
 
 export default defineComponent({
   name: 'SandboxCodeEditor',
@@ -67,13 +63,9 @@ export default defineComponent({
               if (update.docChanged) {
                 const code = update.state.doc.toString();
 
-                if (props.lang === 'HTML') {
-                  emit('update:html', code.trim());
-                } else if (props.lang === 'JS') {
-                  emit('update:js', code.trim());
-                } else if (props.lang === 'CSS') {
-                  emit('update:css', code.trim());
-                }
+                if (props.lang === 'HTML') emit('update:html', code.trim());
+                else if (props.lang === 'JS') emit('update:js', code.trim());
+                else if (props.lang === 'CSS') emit('update:css', code.trim());
               }
             }),
           ],
@@ -93,7 +85,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div ref="container" class="sandbox-code-editor"></div>
+  <div ref="container" class="sandbox-code-editor" />
 </template>
 
 <style lang="scss">

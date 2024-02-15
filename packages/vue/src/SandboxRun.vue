@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import SandboxPreview from './components/SandboxPreview.vue';
 import SandboxCodeEditor from './components/SandboxCodeEditor.vue';
 import type { LANGS } from './constant';

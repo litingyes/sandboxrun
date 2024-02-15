@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref, watch, onMounted, onBeforeUnmount } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import type { PropType } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import sandboxDoc from '../sandbox.html?raw';
@@ -61,5 +61,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <div ref="sandboxPreviewRef" class="sandbox-preview"></div>
+  <div ref="sandboxPreviewRef" class="sandbox-preview" />
 </template>

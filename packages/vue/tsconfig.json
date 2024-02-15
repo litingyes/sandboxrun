@@ -1,17 +1,16 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "allowJs": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "allowJs": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
     "verbatimModuleSyntax": true
   },
-  "files": [],
-  "include": [],
   "references": [
     {
       "path": "./tsconfig.lib.json"
@@ -20,5 +19,6 @@
       "path": "./tsconfig.spec.json"
     }
   ],
-  "extends": "../../tsconfig.base.json"
+  "files": [],
+  "include": []
 }

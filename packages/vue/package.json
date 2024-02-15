@@ -1,18 +1,21 @@
 {
   "name": "@sandboxrun/vue",
-  "version": "0.0.0",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "version": "0.0.0",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite -c ./playground/vite.config.ts"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.7.1"
   },
   "devDependencies": {
     "@codemirror/lang-css": "^6.2.1",
@@ -24,8 +27,5 @@
     "codemirror": "^6.0.1",
     "sass": "^1.69.7",
     "vue": "^3.3.4"
-  },
-  "dependencies": {
-    "@vueuse/core": "^10.7.1"
   }
 }
