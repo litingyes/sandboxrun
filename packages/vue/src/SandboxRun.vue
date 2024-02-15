@@ -1,48 +1,74 @@
-<script lang="ts" setup>
-import { ref, reactive, defineProps } from 'vue3';
+<script lang="ts">
+import { defineComponent, ref, reactive } from 'vue';
 import SandboxPreview from './components/SandboxPreview.vue';
 import SandboxCodeEditor from './components/SandboxCodeEditor.vue';
 import type { LANGS } from './constant';
 import ArrowDown from './icons/ArrowDown.vue';
-import { useElementHover } from '@vueuse/core';
 
-interface Props {
-  html?: string;
-  js?: string;
-  css?: string;
-}
-const props = withDefaults(defineProps<Props>(), {
-  html: '<h1>Sandbox Run</h1>',
-  js: '',
-  css: '',
-});
-
-const codes = reactive<Record<Lowercase<LANGS>, string>>({
-  html: props.html,
-  js: props.js,
-  css: props.css,
-});
-
-const codeEditTypes: LANGS[] = ['HTML', 'JS', 'CSS'];
-const activeType = ref<LANGS>(codeEditTypes[0]);
-
-const editorRef = ref();
-const onToggleActiveType = (lang: LANGS) => {
-  activeType.value = lang;
-  editorRef.value?.toggleLang(
-    lang,
-    codes[lang.toLocaleLowerCase() as Lowercase<LANGS>]
-  );
+const sandboxRunProps = {
+  html: {
+    type: String,
+    default: '<h1>Sandbox Run</h1>',
+  },
+  js: {
+    type: String,
+    default: '',
+  },
+  css: {
+    type: String,
+    default: '',
+  },
 };
 
-const showCode = ref(false);
+export default defineComponent({
+  name: 'SandboxRun',
+  components: {
+    SandboxPreview,
+    SandboxCodeEditor,
+    ArrowDown,
+  },
+  props: sandboxRunProps,
+  setup(props) {
+    const codes = reactive<Record<Lowercase<LANGS>, string>>({
+      html: props.html,
+      js: props.js,
+      css: props.css,
+    });
+    const codeEditTypes: LANGS[] = ['HTML', 'JS', 'CSS'];
+    const activeType = ref<LANGS>(codeEditTypes[0]);
 
-const sandboxRunRef = ref<HTMLDivElement>();
-const isHover = useElementHover(sandboxRunRef);
+    const editorRef = ref();
+    const onToggleActiveType = (lang: LANGS) => {
+      activeType.value = lang;
+      editorRef.value?.toggleLang(
+        lang,
+        codes[lang.toLocaleLowerCase() as Lowercase<LANGS>]
+      );
+    };
+
+    const showCode = ref(false);
+
+    const showArrow = ref(false);
+
+    return {
+      codes,
+      codeEditTypes,
+      activeType,
+      editorRef,
+      onToggleActiveType,
+      showCode,
+      showArrow,
+    };
+  },
+});
 </script>
 
 <template>
-  <div ref="sandboxRunRef" class="sandbox-run">
+  <div
+    class="sandbox-run"
+    @mouseenter="showArrow = true"
+    @mouseleave="showArrow = false"
+  >
     <div class="sandbox-run__preview">
       <SandboxPreview :codes="codes" />
     </div>
@@ -70,7 +96,7 @@ const isHover = useElementHover(sandboxRunRef);
     </Transition>
     <Transition name="fade">
       <ArrowDown
-        v-show="isHover"
+        v-show="showArrow"
         class="sandbox-run__arrow"
         :class="{ reverse: showCode }"
         @click="showCode = !showCode"

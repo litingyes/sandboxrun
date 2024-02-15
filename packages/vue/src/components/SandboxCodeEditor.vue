@@ -1,11 +1,6 @@
-<script lang="ts" setup>
-import {
-  ref,
-  onMounted,
-  onBeforeUnmount,
-  defineProps,
-  defineEmits,
-} from 'vue3';
+<script lang="ts">
+import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
+import type { PropType } from 'vue';
 import { EditorState } from '@codemirror/state';
 import { EditorView, basicSetup } from 'codemirror';
 import { html } from '@codemirror/lang-html';
@@ -14,23 +9,17 @@ import { css } from '@codemirror/lang-css';
 import { oneDark } from '@codemirror/theme-one-dark';
 import type { LANGS } from '../constant';
 
-export interface Props {
-  lang?: LANGS;
-}
-export interface Emits {
-  (name: 'loaded'): void;
-  (name: 'update:html', content: string): void;
-  (name: 'update:js', content: string): void;
-  (name: 'update:css', content: string): void;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  lang: 'HTML',
-});
-const emit = defineEmits<Emits>();
-
-const container = ref<HTMLDivElement>();
-let codemirror: EditorView;
+const sandboxCodeEditorProps = {
+  lang: {
+    type: String as PropType<LANGS>,
+  },
+};
+const sandboxCodeEditorEmits = {
+  loaded: () => {},
+  'update:html': (content: string) => {},
+  'update:js': (content: string) => {},
+  'update:css': (content: string) => {},
+};
 
 const getLangConfig = (lang: LANGS) => {
   if (lang === 'HTML') {
@@ -42,50 +31,64 @@ const getLangConfig = (lang: LANGS) => {
   }
 };
 
-onMounted(() => {
-  const state = EditorState.create({
-    extensions: [basicSetup, oneDark],
-  });
+export default defineComponent({
+  name: 'SandboxCodeEditor',
+  props: sandboxCodeEditorProps,
+  emits: sandboxCodeEditorEmits,
+  setup(props, { emit, expose }) {
+    const container = ref<HTMLDivElement>();
+    let codemirror: EditorView;
 
-  codemirror = new EditorView({
-    state,
-    parent: container.value,
-  });
+    onMounted(() => {
+      const state = EditorState.create({
+        extensions: [basicSetup, oneDark],
+      });
 
-  emit('loaded');
-});
-onBeforeUnmount(() => {
-  codemirror?.destroy();
-});
+      codemirror = new EditorView({
+        state,
+        parent: container.value,
+      });
 
-const toggleLang = (lang: LANGS, code: string) => {
-  codemirror.setState(
-    EditorState.create({
-      doc: code,
-      extensions: [
-        basicSetup,
-        oneDark,
-        getLangConfig(lang),
-        EditorView.updateListener.of((update) => {
-          if (update.docChanged) {
-            const code = update.state.doc.toString();
+      emit('loaded');
+    });
+    onBeforeUnmount(() => {
+      codemirror?.destroy();
+    });
 
-            if (props.lang === 'HTML') {
-              emit('update:html', code.trim());
-            } else if (props.lang === 'JS') {
-              emit('update:js', code.trim());
-            } else if (props.lang === 'CSS') {
-              emit('update:css', code.trim());
-            }
-          }
-        }),
-      ],
-    })
-  );
-};
+    const toggleLang = (lang: LANGS, code: string) => {
+      codemirror.setState(
+        EditorState.create({
+          doc: code,
+          extensions: [
+            basicSetup,
+            oneDark,
+            getLangConfig(lang),
+            EditorView.updateListener.of((update) => {
+              if (update.docChanged) {
+                const code = update.state.doc.toString();
 
-defineExpose({
-  toggleLang,
+                if (props.lang === 'HTML') {
+                  emit('update:html', code.trim());
+                } else if (props.lang === 'JS') {
+                  emit('update:js', code.trim());
+                } else if (props.lang === 'CSS') {
+                  emit('update:css', code.trim());
+                }
+              }
+            }),
+          ],
+        })
+      );
+    };
+
+    expose({
+      toggleLang,
+    });
+
+    return {
+      container,
+    };
+  },
 });
 </script>
 
