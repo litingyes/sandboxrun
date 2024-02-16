@@ -141,7 +141,7 @@ importers:
         specifier: ^1.69.7
         version: 1.69.7
       vue:
-        specifier: ^3.3.4
+        specifier: ^3.4.19
         version: 3.4.19(typescript@5.2.2)
 
 packages:
