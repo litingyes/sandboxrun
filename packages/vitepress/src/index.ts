@@ -1,1 +1,1 @@
-export * from './lib/vitepress';
+export * from './markdownItPlugin';

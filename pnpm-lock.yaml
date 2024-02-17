@@ -107,6 +107,9 @@ importers:
       prettier:
         specifier: ^2.6.2
         version: 2.8.8
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
       typescript:
         specifier: ~5.2.2
         version: 5.2.2
@@ -123,7 +126,18 @@ importers:
         specifier: ^1.8.8
         version: 1.8.27(typescript@5.2.2)
 
-  packages/vitepress: {}
+  packages/vitepress:
+    dependencies:
+      '@sandboxrun/vue':
+        specifier: workspace:*
+        version: link:../vue
+    devDependencies:
+      '@types/markdown-it-container':
+        specifier: ^2.0.9
+        version: 2.0.9
+      markdown-it-container:
+        specifier: ^4.0.0
+        version: 4.0.0
 
   packages/vue:
     devDependencies:
@@ -4278,6 +4292,32 @@ packages:
       '@types/node': 18.7.1
     dev: true
 
+  /@types/linkify-it@3.0.5:
+    resolution:
+      {
+        integrity: sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==,
+      }
+    dev: true
+
+  /@types/markdown-it-container@2.0.9:
+    resolution:
+      {
+        integrity: sha512-pW2W5ibThEXN/wKXTCsORMRJ0zKdFae/v+/n2YV8p6L/1gWQKIaW9KovmckuNV+v9u6yInMV1cXtfmDj+Q52NA==,
+      }
+    dependencies:
+      '@types/markdown-it': 13.0.7
+    dev: true
+
+  /@types/markdown-it@13.0.7:
+    resolution:
+      {
+        integrity: sha512-U/CBi2YUUcTHBt5tjO2r5QV/x0Po6nsYwQU4Y04fBS6vfoImaiZ6f8bi3CjTCxBPQSO1LMyUqkByzi8AidyxfA==,
+      }
+    dependencies:
+      '@types/linkify-it': 3.0.5
+      '@types/mdurl': 1.0.5
+    dev: true
+
   /@types/mdast@3.0.15:
     resolution:
       {
@@ -4285,6 +4325,13 @@ packages:
       }
     dependencies:
       '@types/unist': 2.0.10
+    dev: true
+
+  /@types/mdurl@1.0.5:
+    resolution:
+      {
+        integrity: sha512-6L6VymKTzYSrEf4Nev4Xa1LCHKrlTlYCBMTlQKFuddo1CvQcE52I0mwfOJayueUC7MJuXOeHTcIU683lzd0cUA==,
+      }
     dev: true
 
   /@types/minimatch@5.1.2:
@@ -10159,6 +10206,13 @@ packages:
         integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==,
       }
     engines: { node: '>=8' }
+    dev: true
+
+  /markdown-it-container@4.0.0:
+    resolution:
+      {
+        integrity: sha512-HaNccxUH0l7BNGYbFbjmGpf5aLHAMTinqRZQAEQbMr2cdD3z91Q6kIo1oUn1CQndkT03jat6ckrdRYuwwqLlQw==,
+      }
     dev: true
 
   /mdast-util-from-markdown@0.8.5:

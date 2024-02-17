@@ -14,7 +14,8 @@
         "assets": [],
         "project": "packages/vitepress/package.json",
         "compiler": "swc",
-        "format": ["cjs", "esm"]
+        "format": ["cjs", "esm"],
+        "external": ["markdown-it-container"]
       }
     },
     "lint": {
