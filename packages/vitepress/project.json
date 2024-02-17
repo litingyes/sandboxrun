@@ -1,0 +1,26 @@
+{
+  "name": "vitepress",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/vitepress/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/vitepress/dist",
+        "main": "packages/vitepress/src/index.ts",
+        "tsConfig": "packages/vitepress/tsconfig.lib.json",
+        "assets": [],
+        "project": "packages/vitepress/package.json",
+        "compiler": "swc",
+        "format": ["cjs", "esm"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}

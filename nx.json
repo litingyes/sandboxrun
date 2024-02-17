@@ -20,5 +20,10 @@
       "inputs": ["default", "^default"]
     }
   },
-  "nxCloudAccessToken": "MjYyM2IzYTUtZGQ0MS00ZGMyLWI4MzEtN2UwYWYwZjNiM2ZlfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MjYyM2IzYTUtZGQ0MS00ZGMyLWI4MzEtN2UwYWYwZjNiM2ZlfHJlYWQtd3JpdGU=",
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": true
+    }
+  }
 }

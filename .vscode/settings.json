@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["antfu", "codemirror", "commitlint", "sandboxrun", "vueuse"],
+  "cSpell.words": [
+    "antfu",
+    "codemirror",
+    "commitlint",
+    "sandboxrun",
+    "vitepress",
+    "vueuse"
+  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,

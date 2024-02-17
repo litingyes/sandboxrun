@@ -10,6 +10,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "paths": {
+      "vitepress": ["packages/vitepress/src/index.ts"],
       "vue": ["packages/vue/src/index.ts"]
     },
     "declaration": false,
