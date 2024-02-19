@@ -1,0 +1,17 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "description": "",
+  "author": "liting-yes <luz.liting@gmail.com> (https://liting.ink/)",
+  "license": "",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-rc.44"
+  }
+}

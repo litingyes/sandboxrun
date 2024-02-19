@@ -5,7 +5,10 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "docs:dev": "pnpm --filter docs docs:dev",
+    "docs:build": "pnpm --filter docs docs:build",
+    "docs:preview": "pnpm --filter docs docs:preview"
   },
   "dependencies": {
     "@swc/helpers": "~0.5.2",
