@@ -1,3 +1,13 @@
+## v0.1.0 (2024-02-21)
+
+### 🚀 Features
+
+- **vitepress:** add markdown-it plugin ([6f42a1f](https://github.com/liting-yes/sandboxrun/commit/6f42a1f))
+
+### ❤️ Thank You
+
+- liting @liting-yes
+
 ## 0.0.1-0 (2024-02-16)
 
 ### 🚀 Features
