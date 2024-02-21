@@ -129,7 +129,7 @@ importers:
   docs:
     dependencies:
       '@sandboxrun/vue':
-        specifier: workspace:*
+        specifier: 0.1.1
         version: link:../packages/vue
     devDependencies:
       vitepress:
