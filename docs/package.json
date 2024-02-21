@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "author": "liting-yes <luz.liting@gmail.com> (https://liting.ink/)",
   "license": "",
@@ -12,7 +12,7 @@
     "docs:preview": "vitepress preview"
   },
   "dependencies": {
-    "@sandboxrun/vue": "0.1.0"
+    "@sandboxrun/vue": "0.1.1"
   },
   "devDependencies": {
     "vitepress": "1.0.0-rc.44"

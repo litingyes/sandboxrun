@@ -1,3 +1,14 @@
+## 0.1.1 (2024-02-21)
+
+### 🩹 Fixes
+
+- **vue:** config about export file path ([2e3a6aa](https://github.com/liting-yes/sandboxrun/commit/2e3a6aa))
+- **vue:** load js code ([4a5d4e8](https://github.com/liting-yes/sandboxrun/commit/4a5d4e8))
+
+### ❤️ Thank You
+
+- liting @liting-yes
+
 ## v0.1.0 (2024-02-21)
 
 ### 🚀 Features
