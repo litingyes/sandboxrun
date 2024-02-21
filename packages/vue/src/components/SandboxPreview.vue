@@ -32,7 +32,7 @@ export default defineComponent({
       sandbox.style.border = 'none';
       sandbox.srcdoc = sandboxDoc
         .replace(/\/\* PLACEHOLDER_CSS \*\//, props.codes.css)
-        .replace(/<!-- PLACEHOLDER_JS -->/, props.codes.js)
+        .replace(/\/\/ PLACEHOLDER_JS/, props.codes.js)
         .replace(/<!-- PLACEHOLDER_HTML-->/, props.codes.html);
       sandboxPreviewRef.value?.appendChild(sandbox);
     });
