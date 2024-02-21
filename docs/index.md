@@ -3,17 +3,12 @@ layout: home
 
 hero:
   name: 'Sandboxrun'
-  text: 'Lightweight preview and real-time editing front-end trio'
+  text: 'Lightweight preview and real-time editing solution'
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+      text: Vitepress
+      link: /guide/vitepress
+    - theme: alt
+      text: Vue
+      link: /guide/vue
 ---

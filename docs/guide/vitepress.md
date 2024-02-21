@@ -1,6 +1,6 @@
-# 开始使用
+# Vitepress
 
-## 安装
+## Installation
 
 ::: code-group
 
@@ -14,9 +14,9 @@ npm i @sandboxrun/vue
 
 :::
 
-## 设置
+## Setup
 
-### 添加 Vite 插件
+### Add Vite Plugin
 
 ```ts
 // .vitepress/config.ts
@@ -30,7 +30,7 @@ export default defineConfig({
 });
 ```
 
-### 注册组件
+### Register Component
 
 ```ts
 // .vitepress/theme/index.ts
@@ -47,7 +47,7 @@ export default {
 } satisfies Theme;
 ```
 
-## 演示
+## Demo
 
 ::: tip Code in MarkDown
 &colon;&colon;&colon; sandboxrun

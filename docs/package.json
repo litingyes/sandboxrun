@@ -11,6 +11,9 @@
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
   },
+  "dependencies": {
+    "@sandboxrun/vue": "workspace:*"
+  },
   "devDependencies": {
     "vitepress": "1.0.0-rc.44"
   }

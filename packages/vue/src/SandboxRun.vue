@@ -30,9 +30,9 @@ export default defineComponent({
   props: sandboxRunProps,
   setup(props) {
     const codes = reactive<Record<Lowercase<LANGS>, string>>({
-      html: props.html,
-      js: props.js,
-      css: props.css,
+      html: decodeURIComponent(props.html),
+      js: decodeURIComponent(props.js),
+      css: decodeURIComponent(props.css),
     });
     const codeEditTypes: LANGS[] = ['HTML', 'JS', 'CSS'];
     const activeType = ref<LANGS>(codeEditTypes[0]);
@@ -105,7 +105,7 @@ export default defineComponent({
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .sandbox-run {
   position: relative;
   background: #ffffff;
@@ -127,6 +127,8 @@ export default defineComponent({
       cursor: pointer;
       padding: 4px;
       border-radius: 4px;
+      // avoid override by vitepress style
+      margin: 0;
 
       &:hover {
         background: #e2e8f0;
