@@ -11,4 +11,12 @@ hero:
     - theme: alt
       text: Vue
       link: /zh-CN/guide/vue
+
+features:
+  - title: 轻量
+    details: 代码轻量、使用简洁
+  - title: Vitepress
+    details: 支持在 Vitepress 中使用
+  - title: Vue
+    details: 支持在 Vue 应用中使用
 ---

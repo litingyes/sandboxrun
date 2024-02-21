@@ -1,4 +1,4 @@
-# Vuw
+# Vue
 
 ## Installation
 
