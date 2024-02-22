@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-import { vitePlugin } from '@sandboxrun/vue';
+import { vitePlugin } from '../../packages/vue/src/plugins/vitepress';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
