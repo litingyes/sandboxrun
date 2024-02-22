@@ -1,3 +1,14 @@
+## 0.1.2 (2024-02-22)
+
+### 🩹 Fixes
+
+- color about tabs ([9d5353b](https://github.com/liting-yes/sandboxrun/commit/9d5353b))
+- **docs:** lock file ([e782139](https://github.com/liting-yes/sandboxrun/commit/e782139))
+
+### ❤️ Thank You
+
+- liting @liting-yes
+
 ## 0.1.1 (2024-02-21)
 
 ### 🩹 Fixes
