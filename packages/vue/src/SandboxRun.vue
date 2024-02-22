@@ -112,10 +112,12 @@ export default defineComponent({
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   padding: 8px;
+  color: #0f172a;
 
   &__tabs {
     list-style: none;
-    padding: 0;
+    margin: 0;
+    padding: 8px 0;
     display: flex;
     align-items: center;
     gap: 8px;
