@@ -3,6 +3,23 @@
   "type": "module",
   "version": "0.1.2",
   "private": false,
+  "description": "Lightweight preview and real-time editing front-end trio",
+  "author": "liting <luz.liting@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://sandboxrun.liting.ink",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liting-yes/sandboxrun.git"
+  },
+  "bugs": {
+    "url": "https://github.com/liting-yes/sandboxrun/issues"
+  },
+  "keywords": [
+    "vue",
+    "preview",
+    "iframe",
+    "vitepress-plugin"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
