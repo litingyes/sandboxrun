@@ -1,3 +1,15 @@
+## 0.3.0 (2024-02-24)
+
+### 🚀 Features
+
+- **vue:** add default min height for preview container ([79a1a79](https://github.com/liting-yes/sandboxrun/commit/79a1a79))
+- **vue:** add skeleton ([73188ea](https://github.com/liting-yes/sandboxrun/commit/73188ea))
+- **vue:** support fix arrow ([fa96419](https://github.com/liting-yes/sandboxrun/commit/fa96419))
+
+### ❤️ Thank You
+
+- liting @liting-yes
+
 ## 0.2.1 (2024-02-24)
 
 This was a version bump only, there were no code changes.

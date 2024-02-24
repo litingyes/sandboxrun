@@ -1,7 +1,7 @@
 {
   "name": "@sandboxrun/vue",
   "type": "module",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": false,
   "description": "Lightweight preview and real-time editing front-end trio",
   "author": "liting <luz.liting@gmail.com>",
