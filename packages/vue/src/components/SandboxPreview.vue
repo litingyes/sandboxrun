@@ -78,3 +78,9 @@ export default defineComponent({
 <template>
   <div ref="sandboxPreviewRef" class="sandbox-preview" />
 </template>
+
+<style lang="scss">
+.sandbox-preview {
+  min-height: 200px;
+}
+</style>
