@@ -47,6 +47,7 @@
     "@codemirror/language": "^6.10.0",
     "@codemirror/state": "^6.4.0",
     "@codemirror/theme-one-dark": "^6.1.2",
+    "@formkit/auto-animate": "^0.8.1",
     "@vueuse/core": "^10.7.2",
     "codemirror": "^6.0.1",
     "sass": "^1.69.7",

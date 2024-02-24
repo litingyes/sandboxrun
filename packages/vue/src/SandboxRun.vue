@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, onMounted, reactive, ref } from 'vue';
+import autoAnimate from '@formkit/auto-animate';
 import SandboxPreview from './components/SandboxPreview.vue';
 import SandboxCodeEditor from './components/SandboxCodeEditor.vue';
 import type { LANGS } from './constant';
@@ -29,6 +30,11 @@ export default defineComponent({
   },
   props: sandboxRunProps,
   setup(props) {
+    const sandboxRunRef = ref<HTMLDivElement>();
+    onMounted(() => {
+      autoAnimate(sandboxRunRef.value!);
+    });
+
     const codes = reactive<Record<Lowercase<LANGS>, string>>({
       html: decodeURIComponent(props.html),
       js: decodeURIComponent(props.js),
@@ -51,6 +57,7 @@ export default defineComponent({
     const showArrow = ref(false);
 
     return {
+      sandboxRunRef,
       codes,
       codeEditTypes,
       activeType,
@@ -65,6 +72,7 @@ export default defineComponent({
 
 <template>
   <div
+    ref="sandboxRunRef"
     class="sandbox-run"
     @mouseenter="showArrow = true"
     @mouseleave="showArrow = false"
@@ -72,28 +80,26 @@ export default defineComponent({
     <div class="sandbox-run__preview">
       <SandboxPreview :codes="codes" />
     </div>
-    <Transition name="fade">
-      <div v-show="showCode">
-        <ul class="sandbox-run__tabs">
-          <li
-            v-for="item in codeEditTypes"
-            :key="item"
-            :class="{ 'is-active': activeType === item }"
-            @click="onToggleActiveType(item)"
-          >
-            {{ item }}
-          </li>
-        </ul>
-        <SandboxCodeEditor
-          ref="editorRef"
-          :lang="activeType"
-          @loaded="onToggleActiveType(activeType)"
-          @update:html="(html) => (codes.html = html)"
-          @update:js="(js) => (codes.js = js)"
-          @update:css="(css) => (codes.css = css)"
-        />
-      </div>
-    </Transition>
+    <div v-if="showCode">
+      <ul class="sandbox-run__tabs">
+        <li
+          v-for="item in codeEditTypes"
+          :key="item"
+          :class="{ 'is-active': activeType === item }"
+          @click="onToggleActiveType(item)"
+        >
+          {{ item }}
+        </li>
+      </ul>
+      <SandboxCodeEditor
+        ref="editorRef"
+        :lang="activeType"
+        @loaded="onToggleActiveType(activeType)"
+        @update:html="(html) => (codes.html = html)"
+        @update:js="(js) => (codes.js = js)"
+        @update:css="(css) => (codes.css = css)"
+      />
+    </div>
     <Transition name="fade">
       <ArrowDown
         v-show="showArrow"

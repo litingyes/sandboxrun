@@ -3,6 +3,7 @@
     "antfu",
     "codemirror",
     "commitlint",
+    "formkit",
     "sandboxrun",
     "vitepress",
     "vueuse"
