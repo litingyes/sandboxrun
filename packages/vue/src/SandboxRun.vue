@@ -164,15 +164,15 @@ export default defineComponent({
       transform: translateX(-50%) rotateX(180deg);
     }
   }
-}
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s;
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.3s;
+  }
 }
 </style>
