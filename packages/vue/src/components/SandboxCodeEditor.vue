@@ -15,10 +15,18 @@ const sandboxCodeEditorProps = {
   },
 };
 const sandboxCodeEditorEmits = {
-  loaded: () => {},
-  'update:html': (_content: string) => {},
-  'update:js': (_content: string) => {},
-  'update:css': (_content: string) => {},
+  loaded: () => {
+    return true;
+  },
+  'update:html': (_content: string) => {
+    return true;
+  },
+  'update:js': (_content: string) => {
+    return true;
+  },
+  'update:css': (_content: string) => {
+    return true;
+  },
 };
 
 function getLangConfig(lang: LANGS) {
