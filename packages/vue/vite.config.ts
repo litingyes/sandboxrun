@@ -43,7 +43,16 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['vue'],
+      external: [
+        'vue',
+        'codemirror',
+        '@codemirror/state',
+        '@codemirror/language',
+        '@codemirror/lang-html',
+        '@codemirror/lang-javascript',
+        '@codemirror/lang-css',
+        '@codemirror/theme-one-dark',
+      ],
     },
   },
 
