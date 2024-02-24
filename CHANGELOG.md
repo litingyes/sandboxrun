@@ -1,3 +1,22 @@
+## 0.2.0 (2024-02-24)
+
+### 🚀 Features
+
+- add animate for show and hide code ([2ab76f5](https://github.com/liting-yes/sandboxrun/commit/2ab76f5))
+
+### 🔥 Performance
+
+- **vue:** adjust style for tabs ([31eb75d](https://github.com/liting-yes/sandboxrun/commit/31eb75d))
+
+### 🩹 Fixes
+
+- **vue:** sync body height in iframe to container ([b3dc281](https://github.com/liting-yes/sandboxrun/commit/b3dc281))
+- **vue:** emits types ([667c1c0](https://github.com/liting-yes/sandboxrun/commit/667c1c0))
+
+### ❤️ Thank You
+
+- liting @liting-yes
+
 ## 0.1.3-0 (2024-02-23)
 
 This was a version bump only, there were no code changes.
