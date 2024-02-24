@@ -4,8 +4,6 @@
     <style>
       html,
       body {
-        width: 100%;
-        height: 100%;
         margin: 0;
         padding: 0;
       }
@@ -16,6 +14,11 @@
     <!-- PLACEHOLDER_HTML-->
     <script>
       // PLACEHOLDER_JS
+    </script>
+    <script>
+      window.onload = () => {
+        window.parent.postMessage('loaded', '*');
+      };
     </script>
   </body>
 </html>

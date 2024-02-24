@@ -29,6 +29,7 @@ export default defineComponent({
       sandbox.classList.add('sandbox-preview__iframe');
       sandbox.style.width = '100%';
       sandbox.style.height = '100%';
+      sandbox.style.minHeight = '200px';
       sandbox.style.border = 'none';
       sandbox.srcdoc = sandboxDoc
         .replace(/\/\* PLACEHOLDER_CSS \*\//, props.codes.css)
@@ -39,6 +40,13 @@ export default defineComponent({
 
     onMounted(() => {
       updateSandbox();
+
+      window.addEventListener('message', ({ source, data }) => {
+        if (!sandbox || source !== sandbox.contentWindow) return;
+
+        if (data === 'loaded')
+          sandbox.style.height = `${sandbox.contentDocument?.body.offsetHeight}px`;
+      });
     });
     watch(
       () => props.codes,
