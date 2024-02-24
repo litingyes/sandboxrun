@@ -115,10 +115,14 @@ export default defineComponent({
 .sandbox-run {
   position: relative;
   background: #ffffff;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 8px;
   color: #0f172a;
+
+  &:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
 
   &__tabs {
     list-style: none;
