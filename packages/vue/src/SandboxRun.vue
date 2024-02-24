@@ -127,13 +127,13 @@ export default defineComponent({
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 16px;
-    font-weight: 500;
+    font-weight: 600;
 
     li {
       cursor: pointer;
-      padding: 4px;
+      padding: 4px 8px;
       border-radius: 4px;
       // avoid override by vitepress style
       margin: 0;
@@ -143,7 +143,8 @@ export default defineComponent({
       }
 
       &.is-active {
-        background: #cbd5e1;
+        background: #3b82f6;
+        color: #ffffff;
       }
     }
   }
