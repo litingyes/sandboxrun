@@ -44,8 +44,15 @@ export default defineComponent({
       window.addEventListener('message', ({ source, data }) => {
         if (!sandbox || source !== sandbox.contentWindow) return;
 
-        if (data === 'loaded')
-          sandbox.style.height = `${sandbox.contentDocument?.body.offsetHeight}px`;
+        switch (data.type) {
+          case 'loaded': {
+            sandbox.style.height = `${sandbox.contentDocument?.body.offsetHeight}px`;
+            break;
+          }
+          default: {
+            console.warn(`[sandboxrun] Unrecognized message: ${data.data}`);
+          }
+        }
       });
     });
     watch(

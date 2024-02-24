@@ -16,8 +16,22 @@
       // PLACEHOLDER_JS
     </script>
     <script>
+      window.onerror = (event) => {
+        window.parent.postMessage(
+          {
+            type: 'error',
+            data: event,
+          },
+          '*'
+        );
+      };
       window.onload = () => {
-        window.parent.postMessage('loaded', '*');
+        window.parent.postMessage(
+          {
+            type: 'loaded',
+          },
+          '*'
+        );
       };
     </script>
   </body>
