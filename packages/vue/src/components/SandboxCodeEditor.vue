@@ -92,6 +92,7 @@ export default defineComponent({
 .sandbox-code-editor {
   border-radius: 8px;
   overflow: hidden;
+  font-size: 16px;
 
   .cm-editor {
     min-height: 100px;
