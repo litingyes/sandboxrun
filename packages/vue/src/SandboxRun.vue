@@ -1,6 +1,8 @@
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { computed, defineComponent, onMounted, reactive, ref } from 'vue';
 import autoAnimate from '@formkit/auto-animate';
+import { useElementBounding, useWindowSize } from '@vueuse/core';
+import type { CSSProperties } from 'vue';
 import SandboxPreview from './components/SandboxPreview.vue';
 import SandboxCodeEditor from './components/SandboxCodeEditor.vue';
 import type { LANGS } from './constant';
@@ -56,6 +58,36 @@ export default defineComponent({
 
     const showArrow = ref(false);
 
+    const { height } = useWindowSize();
+    const { top, bottom } = useElementBounding(sandboxRunRef);
+    const arrowStyle = computed<CSSProperties>(() => {
+      if (bottom.value <= height.value || top.value >= height.value) {
+        if (showCode.value) {
+          return {
+            transform: `translateX(-50%) rotateX(180deg)`,
+          };
+        }
+
+        return {
+          transform: `translateX(-50%)`,
+        };
+      }
+
+      if (showCode.value) {
+        return {
+          transform: `translateX(-50%) translateY(${
+            height.value - bottom.value - 12
+          }px) rotateX(180deg)`,
+        };
+      }
+
+      return {
+        transform: `translateX(-50%)  translateY(${
+          height.value - bottom.value - 12
+        }px)`,
+      };
+    });
+
     return {
       sandboxRunRef,
       codes,
@@ -65,6 +97,7 @@ export default defineComponent({
       onToggleActiveType,
       showCode,
       showArrow,
+      arrowStyle,
     };
   },
 });
@@ -105,6 +138,7 @@ export default defineComponent({
         v-show="showArrow"
         class="sandbox-run__arrow"
         :class="{ reverse: showCode }"
+        :style="arrowStyle"
         @click="showCode = !showCode"
       />
     </Transition>
@@ -159,15 +193,10 @@ export default defineComponent({
     border: 1px rgba(0, 0, 0, 0.25) solid;
     left: 50%;
     bottom: -12px;
-    transform: translateX(-50%);
     cursor: pointer;
     border-radius: 50%;
     transition: all 0.3s;
     color: #475569;
-
-    &.reverse {
-      transform: translateX(-50%) rotateX(180deg);
-    }
   }
 
   .fade-enter-from,
