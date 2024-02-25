@@ -1,3 +1,13 @@
+## 0.4.0 (2024-02-25)
+
+### 🚀 Features
+
+- **vue:** support download code ([b8e5c09](https://github.com/liting-yes/sandboxrun/commit/b8e5c09))
+
+### ❤️ Thank You
+
+- liting @liting-yes
+
 ## 0.3.0 (2024-02-24)
 
 ### 🚀 Features
