@@ -3,10 +3,12 @@ import { computed, defineComponent, onMounted, reactive, ref } from 'vue';
 import autoAnimate from '@formkit/auto-animate';
 import { useElementBounding, useWindowSize } from '@vueuse/core';
 import type { CSSProperties } from 'vue';
+import { saveHtmlFile } from 'webfun';
 import SandboxPreview from './components/SandboxPreview.vue';
 import SandboxCodeEditor from './components/SandboxCodeEditor.vue';
 import type { LANGS } from './constant';
 import ArrowDown from './icons/ArrowDown.vue';
+import IconDownload from './icons/Download.vue';
 
 const sandboxRunProps = {
   html: {
@@ -29,6 +31,7 @@ export default defineComponent({
     SandboxPreview,
     SandboxCodeEditor,
     ArrowDown,
+    IconDownload,
   },
   props: sandboxRunProps,
   setup(props) {
@@ -88,6 +91,11 @@ export default defineComponent({
       };
     });
 
+    const previewRef = ref();
+    const downloadCode = () => {
+      saveHtmlFile('sandboxrun', previewRef.value.getCode());
+    };
+
     return {
       sandboxRunRef,
       codes,
@@ -98,6 +106,8 @@ export default defineComponent({
       showCode,
       showArrow,
       arrowStyle,
+      previewRef,
+      downloadCode,
     };
   },
 });
@@ -111,19 +121,31 @@ export default defineComponent({
     @mouseleave="showArrow = false"
   >
     <div class="sandbox-run__preview">
-      <SandboxPreview :codes="codes" />
+      <SandboxPreview ref="previewRef" :codes="codes" />
     </div>
     <div v-if="showCode">
-      <ul class="sandbox-run__tabs">
-        <li
-          v-for="item in codeEditTypes"
-          :key="item"
-          :class="{ 'is-active': activeType === item }"
-          @click="onToggleActiveType(item)"
-        >
-          {{ item }}
-        </li>
-      </ul>
+      <div class="sandbox-run__actions">
+        <ul class="sandbox-run__tabs">
+          <li
+            v-for="item in codeEditTypes"
+            :key="item"
+            :class="{ 'is-active': activeType === item }"
+            @click="onToggleActiveType(item)"
+          >
+            {{ item }}
+          </li>
+        </ul>
+        <div class="sandbox-run__icons">
+          <div
+            class="sandbox-run__icon"
+            title="download code"
+            @click="downloadCode"
+          >
+            <IconDownload />
+          </div>
+        </div>
+      </div>
+
       <SandboxCodeEditor
         ref="editorRef"
         :lang="activeType"
@@ -158,6 +180,12 @@ export default defineComponent({
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   }
 
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__tabs {
     list-style: none;
     margin: 0;
@@ -184,6 +212,24 @@ export default defineComponent({
         background: #3b82f6;
         color: #ffffff;
       }
+    }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover {
+      background: #e2e8f0;
     }
   }
 

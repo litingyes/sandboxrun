@@ -19,7 +19,7 @@ const sandboxPreviewProps = {
 export default defineComponent({
   name: 'SandboxPreview',
   props: sandboxPreviewProps,
-  setup(props) {
+  setup(props, { expose }) {
     const loading = ref(false);
     const debounceLoading = refDebounced(loading);
 
@@ -74,6 +74,13 @@ export default defineComponent({
     );
     onBeforeUnmount(() => {
       sandbox?.remove();
+    });
+
+    function getCode() {
+      return sandbox.srcdoc;
+    }
+    expose({
+      getCode,
     });
 
     return {
